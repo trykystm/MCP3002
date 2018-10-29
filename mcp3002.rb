@@ -4,12 +4,10 @@ Bundler.require                 # require 'pi_piper'
 
 class MCP3002 < PiPiper::Spi
   
-  CE0 = CHIP_SELECT_0
-  CE1 = CHIP_SELECT_1
   CH0 = 0b01101000
   CH1 = 0b01111000
   
-  def initialize(chip = CE0)
+  def initialize(chip = PiPiper::Spi::CHIP_SELECT_0)
     PiPiper::Spi.begin(chip) do |spi|
       @spi = spi
     end
