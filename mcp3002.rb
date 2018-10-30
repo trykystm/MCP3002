@@ -10,10 +10,11 @@ class MCP3002 < PiPiper::Spi
   def initialize(chip = PiPiper::Spi::CHIP_SELECT_0)
     PiPiper::Spi.begin(chip) do |spi|
       @spi = spi
+      @command = 0b10
     end
   end
   
-  def single(ch = CH0)
+  def set_single_mode(ch = CH0)
     raw = @spi.write ch, 0
     ((raw[0] << 8) + raw[1]) & 0b001111111111
   end
